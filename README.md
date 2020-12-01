@@ -22,6 +22,8 @@
 
 ##### 注意事项：1.所有的冒号都是半角，也就是英文的冒号，而不是中文的冒号 2.空格很重要，关键词之间要有空格 3.提取关键词很重要(可以提高搜索效率）
 
+项目源码：[search_tools](https://github.com/bestming/search_tools)
+
 code by [GitHub@韦相铭](https://github.com/bestming),有问题，欢迎提交issues
 
 灵感来源： [bilibili@蜡笔和小勋](https://www.bilibili.com/video/BV1YK4y1t7bg?t=437)
