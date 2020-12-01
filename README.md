@@ -21,6 +21,9 @@
 ⑧结果包含某个url
 
 ##### 注意事项：1.所有的冒号都是半角，也就是英文的冒号，而不是中文的冒号 2.空格很重要，关键词之间要有空格 3.提取关键词很重要(可以提高搜索效率）
+工具在线使用：
+- [bestming.gitee.io/search_tools](https://bestming.gitee.io/search_tools)
+- [bestming.github.io/search_tools](https://bestming.github.io/search_tools)
 
 项目源码：[search_tools](https://github.com/bestming/search_tools)
 
