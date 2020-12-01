@@ -20,7 +20,7 @@
 
 ⑧结果包含某个url
 
-##### 注意事项：1.所有的冒号都是半角，也就是英文的冒号，而不是中文的冒号 2.空格很重要，关键词之间要有空格 3.提取关键词很重要(可以提高搜索效率）
+##### 注意事项：1.所有的冒号都是半角，也就是英文的冒号，而不是中文的冒号 2.空格很重要，关键词之间要有空格 3.提取关键词很重要(可以提高搜索效率）4. 4.在以上8种不同的方法之间加上“空格”，即可组合搜索，交集搜索。
 工具在线使用：
 - [bestming.gitee.io/search_tools](https://bestming.gitee.io/search_tools)
 - [bestming.github.io/search_tools](https://bestming.github.io/search_tools)
