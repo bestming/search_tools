@@ -180,12 +180,7 @@
 					}
 
 
-					var exclusive_search = $("#exclusive_search").val();
-					// alert("exclusive_search:" + exclusive_search);
-					if (!is_empty(exclusive_search)) {
-						// search_text.concat(keyword);
-						search_text = search_text + " -" + exclusive_search + " ";
-					}
+
 
 
 					// 2精确
@@ -194,6 +189,14 @@
 					if (!is_empty(refine_search)) {
 						// search_text.concat(keyword);
 						search_text = search_text + "\"" + refine_search + "\"" + " ";
+					}
+					
+					// 排他搜索要放到精确搜索之后,否则搜索出的内容不符合预期
+					var exclusive_search = $("#exclusive_search").val();
+					// alert("exclusive_search:" + exclusive_search);
+					if (!is_empty(exclusive_search)) {
+						// search_text.concat(keyword);
+						search_text = search_text + " -" + exclusive_search + " ";
 					}
 
 					var site_search = $("#site_search").val();
