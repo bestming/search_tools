@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>搜索引擎 搜索规则设置</title>
+
+		<link rel="stylesheet" type="text/css" href="layui-v2.5.6/layui/css/layui.css" />
+		<script src="layui-v2.5.6/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.4.1.min.js"></script>
+	</head>
+
+	<body>
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<label class="layui-form-label">关键字</label>
+				<div class="layui-input-block">
+					<input type="text" id="keyword" name="keyword" required placeholder="请输入关键字" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">1、排他搜索</label>
+				<div class="layui-input-block">
+					<input type="text" id="exclusive_search" name="exclusive_search" required placeholder="请输入排他信息" autocomplete="off"
+					 class="layui-input">
+				</div>
+			</div>
+			<!-- 			<div class="layui-form-item">
+				<label class="layui-form-label">2、精确搜索</label>
+				<div class="layui-input-block">
+					<input type="checkbox" id="refine_search" name="refine_search" lay-skin="switch">
+				</div>
+			</div> -->
+			<div class="layui-form-item">
+				<label class="layui-form-label">2、精确搜索</label>
+				<div class="layui-input-block">
+					<input type="text" id="refine_search" name="refine_search" required placeholder="请输入精确搜索信息" autocomplete="off"
+					 class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">3、站内搜索</label>
+				<div class="layui-input-block">
+					<input type="text" id="site_search" name="site_search" required placeholder="请输入指定在哪个网站内搜索,例如:csdn.com"
+					 autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">4、文件类型</label>
+				<div class="layui-input-block">
+					<select name="filetype" lay-filter="filetype">
+						<option value=""></option>
+						<option value="pdf">pdf</option>
+						<option value="ppt">ppt</option>
+						<option value="word">word</option>
+						<option value="xls">xls</option>
+						<option value="zip">zip</option>
+						<option value="exe">exe</option>
+						<option value="dmg">dmg</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">5、标题搜索</label>
+				<div class="layui-input-block">
+					<input type="text" id="title" name="title" required placeholder="请输入搜索结果要包含的 标题" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">6、正文搜索</label>
+				<div class="layui-input-block">
+					<input type="text" id="text_search" name="text_search" required placeholder="请输入搜索结果要包含的 正文" autocomplete="off"
+					 class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">7、正文全部匹配搜索</label>
+				<div class="layui-input-block">
+					<input type="text" id="alltext_search" name="alltext_search" required placeholder="请输入搜索结果要包含的 正文,多个 用空格隔开"
+					 autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">8、url搜索</label>
+				<div class="layui-input-block">
+					<input type="text" id="url_search" name="url_search" required placeholder="请输入搜索结果要包含的 url,例如:cnki.net"
+					 autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">9、搜索引擎</label>
+				<div class="layui-input-block">
+					<select name="searchtype" lay-filter="searchtype">
+						<option value=""></option>
+						<option value="baidu">baidu.com</option>
+						<option value="bing">bing.com</option>
+						<option value="google">google.com</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">立即搜索</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+
+			<blockquote class="layui-elem-quote">
+				搜索技巧： </br>
+				①排除关键词(减号+关键词)
+				比如说：搜锤子而不是锤子手机，即为-手机
+				</br>
+				②精确搜索(给关键词加引号)
+				比如说：想搜小苹果，而不想是苹果，就“小苹果”
+				</br>
+				③指定网站内搜索(site：域名 关键词)
+				比如说在知乎里搜关于小苹果的内容，即为：site：zhihu.com 小苹果
+				这个方法用于一些搜索引擎特别垃圾的资料网站 比如说中国裁判文书网
+				</br>
+				④指定文件格式(filetype：文件格式 关键词)
+				比如说filetype：pdf 张文显《法理学》
+				包括doc，ppt，avi等格式
+				</br>
+				⑤指定标题搜索(intitle：关键词)
+				搜索的内容必须出现在标题里
+				比如说：intitle：小苹果 那搜索出来的网页标题就都包括小苹果 不然就会出现一些内容才会出现小苹果的网页 信息检索就很费劲
+				</br>
+				⑥intext:是指如果输入intext：小苹果,那搜索出来的文章里面就必须有小苹果的内容
+				</br>
+				⑦allintext: 是指搜索出来的内容必须有包括 小苹果 大苹果 红苹果 所有的内容
+
+				</br>
+				⑧结果包含某个url
+
+				</br>
+				注意事项：1.所有的冒号都是半角，也就是英文的冒号，而不是中文的冒号
+				2.空格很重要，关键词之间要有空格
+				3.提取关键词很重要(可以提高搜索效率
+				</br>
+				code by <a href="https://github.com/bestming" target="_blank" style="color: red;">GitHub@韦相铭</a>,有问题，欢迎提交issues
+				</br>
+				灵感来源： <a href="https://www.bilibili.com/video/BV1YK4y1t7bg?t=437" target="_blank" style="color: red;">bilibili@蜡笔和小勋</a>
+			</blockquote>
+		</form>
+
+		<script>
+			//Demo
+			layui.use('form', function() {
+				var form = layui.form;
+
+
+				// 搜索的文件类型
+				var filetype = "";
+
+				// 搜索引擎的下拉列表
+				var searchtype = "";
+				//监听提交
+				form.on('submit(formDemo)', function(data) {
+					// layer.msg(JSON.stringify(data.field));
+
+					// 追加在搜索引擎后面的文本
+					var search_text = "";
+					// +" ";
+
+
+					var keyword = $("#keyword").val();
+					// alert("keyword:" + keyword);
+					if (!is_empty(keyword)) {
+						// search_text.concat(keyword);
+						search_text = search_text + keyword + " ";
+					}
+
+
+					var exclusive_search = $("#exclusive_search").val();
+					// alert("exclusive_search:" + exclusive_search);
+					if (!is_empty(exclusive_search)) {
+						// search_text.concat(keyword);
+						search_text = search_text + " -" + exclusive_search + " ";
+					}
+
+
+					// 2精确
+					var refine_search = $("#refine_search").val();
+					// alert("refine_search:" + refine_search);
+					if (!is_empty(refine_search)) {
+						// search_text.concat(keyword);
+						search_text = search_text + "\"" + refine_search + "\"" + " ";
+					}
+
+					var site_search = $("#site_search").val();
+					// alert("site_search:" + site_search);
+					if (!is_empty(site_search)) {
+						// search_text.concat(keyword);
+						search_text = search_text + " site:" + site_search + " ";
+					}
+
+					// var filetype = $("#filetype").val();
+					// alert("filetype:" + filetype);
+					if (!is_empty(filetype)) {
+						// search_text.concat(keyword);
+						search_text = search_text + " filetype:" + filetype + " ";
+					}
+
+					var title = $("#title").val();
+					// alert("title:" + title);
+					if (!is_empty(title)) {
+						// search_text.concat(keyword);
+						search_text = search_text + " intitle:" + title + " ";
+					}
+
+					var text_search = $("#text_search").val();
+					// alert("text_search:" + text_search);
+					if (!is_empty(text_search)) {
+						// search_text.concat(keyword);
+						search_text = search_text + " intext:" + text_search + " ";
+					}
+
+					var alltext_search = $("#alltext_search").val();
+					// alert("alltext_search:" + alltext_search);
+					if (!is_empty(alltext_search)) {
+						// search_text.concat(keyword);
+						search_text = search_text + " allintext:" + alltext_search + " ";
+					}
+
+					var url_search = $("#url_search").val();
+					// alert("url_search:" + url_search);
+					if (!is_empty(url_search)) {
+						// search_text.concat(keyword);
+						search_text = search_text + " url:" + url_search + " ";
+					}
+
+					if (searchtype == "baidu") {
+						window.open("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&ch=&tn=baidu&bar=&wd=" + search_text);
+					} else if (searchtype == "bing") {
+						window.open("https://cn.bing.com/search?q=" + search_text);
+					} else if (searchtype == "google") {
+						window.open("https://www.google.com/search?q=" + search_text);
+					}
+
+					// 未选中,默认选择百度
+					if (is_empty(searchtype)) {
+						window.open("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&ch=&tn=baidu&bar=&wd=" + search_text);
+					}
+
+					// alert("search_text:   " + search_text);
+
+					// https://www.baidu.com/s?wd=
+					// https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&ch=&tn=baidu&bar=&wd=
+
+					return false;
+				});
+
+
+				// 把文件类型的下拉列表的值 赋值给全局参数
+				form.on('select(filetype)', function(data) {
+					// alert("filetype:" + data.value);
+					filetype = data.value;
+				});
+
+				// 把搜索引擎的下拉列表的值 赋值给全局参数
+				form.on('select(searchtype)', function(data) {
+					// alert("filetype:" + data.value);
+					searchtype = data.value;
+				});
+
+
+			});
+
+			// 判空
+			function is_empty(my_val) {
+				if (my_val == null || my_val == undefined || my_val == "") {
+					return true;
+				} else {
+					return false;
+				}
+				// alert("is_empty:");
+			}
+		</script>
+	</body>
+
+</html>
+<!-- 
+
+{
+	"title": "d",
+	"exclusive_search": "a",
+	"refine_search": "on",
+	"site_search": "f",
+	"filetype": "0",
+	"text_search": "f",
+	"alltext_search": "d",
+	"url_search": "a"
+}
+
+ -->
