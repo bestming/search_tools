@@ -5,9 +5,15 @@
 		<meta charset="utf-8" />
 		<title>搜索引擎 搜索规则设置</title>
 
-		<link rel="stylesheet" type="text/css" href="layui-v2.5.6/layui/css/layui.css" />
-		<script src="layui-v2.5.6/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 		<link rel="stylesheet" type="text/css" href="layui-v2.5.6/layui/css/layui.css" />
+		<script src="layui-v2.5.6/layui/layui.js" type="text/javascript" charset="utf-8"></script> -->
+
+		<link rel="stylesheet" type="text/css" href="layui-v2.6.8/layui/css/layui.css" />
+		<script src="layui-v2.6.8/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+
+
 		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/dayjs.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
@@ -15,14 +21,13 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">关键字</label>
 				<div class="layui-input-block">
-					<input type="text" id="keyword" name="keyword" required placeholder="请输入关键字" autocomplete="off" class="layui-input">
+					<input type="text" id="keyword" name="keyword" placeholder="请输入关键字" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">1、排他搜索</label>
 				<div class="layui-input-block">
-					<input type="text" id="exclusive_search" name="exclusive_search" required placeholder="请输入排他信息" autocomplete="off"
-					 class="layui-input">
+					<input type="text" id="exclusive_search" name="exclusive_search" placeholder="请输入排他信息" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<!-- 			<div class="layui-form-item">
@@ -34,61 +39,117 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">2、精确搜索</label>
 				<div class="layui-input-block">
-					<input type="text" id="refine_search" name="refine_search" required placeholder="请输入精确搜索信息" autocomplete="off"
-					 class="layui-input">
+					<input type="text" id="refine_search" name="refine_search" placeholder="请输入精确搜索信息" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">3、站内搜索</label>
 				<div class="layui-input-block">
-					<input type="text" id="site_search" name="site_search" required placeholder="请输入指定在哪个网站内搜索,例如:csdn.com"
-					 autocomplete="off" class="layui-input">
+					<input type="text" id="site_search" name="site_search" placeholder="请输入指定在哪个网站内搜索,例如:csdn.com" autocomplete="off"
+					 class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">4、文件类型</label>
 				<div class="layui-input-block">
-					<select name="filetype" lay-filter="filetype">
+					<select name="filetype" lay-filter="filetype" lay-search="">
 						<option value=""></option>
+
 						<option value="pdf">pdf</option>
 						<option value="ppt">ppt</option>
-						<option value="word">word</option>
+						<!-- <option value="pptx">pptx</option> -->
+						<option value="doc">doc</option>
+						<!-- <option value="docx">docx</option> -->
 						<option value="xls">xls</option>
+						<!-- <option value="xlsx">xlsx</option> -->
+
 						<option value="zip">zip</option>
 						<option value="exe">exe</option>
 						<option value="dmg">dmg</option>
+
+						<option value="txt">txt</option>
+						<option value="mobi">mobi</option>
+						<option value="epub">epub</option>
+						<option value="azw3">azw3</option>
+
+						<option value="mp3">mp3</option>
+						<option value="wma">wma</option>
+						<option value="midi">midi</option>
+						<option value="flac">flac</option>
+						<option value="ape">ape</option>
+						<option value="aac">aac</option>
+						<option value="wav">wav</option>
+
+						<option value="mp4">mp4</option>
+						<option value="avi">avi</option>
+						<option value="rmvb">rmvb</option>
+						<option value="flv">flv</option>
+						<option value="mkv">mkv</option>
+						<option value="3gp">3gp</option>
+
+						<option value="jpg">jpg</option>
+						<option value="png">png</option>
+						<option value="gif">gif</option>
 					</select>
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">5、标题搜索</label>
 				<div class="layui-input-block">
-					<input type="text" id="title" name="title" required placeholder="请输入搜索结果要包含的 标题" autocomplete="off" class="layui-input">
+					<input type="text" id="title" name="title" placeholder="请输入搜索结果要包含的 标题" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">6、正文搜索</label>
 				<div class="layui-input-block">
-					<input type="text" id="text_search" name="text_search" required placeholder="请输入搜索结果要包含的 正文" autocomplete="off"
-					 class="layui-input">
+					<input type="text" id="text_search" name="text_search" placeholder="请输入搜索结果要包含的 正文" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">7、正文全部匹配搜索</label>
 				<div class="layui-input-block">
-					<input type="text" id="alltext_search" name="alltext_search" required placeholder="请输入搜索结果要包含的 正文,多个 用空格隔开"
-					 autocomplete="off" class="layui-input">
+					<input type="text" id="alltext_search" name="alltext_search" placeholder="请输入搜索结果要包含的 正文,多个 用空格隔开" autocomplete="off"
+					 class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">8、url搜索</label>
 				<div class="layui-input-block">
-					<input type="text" id="url_search" name="url_search" required placeholder="请输入搜索结果要包含的 url,例如:cnki.net"
-					 autocomplete="off" class="layui-input">
+					<input type="text" id="url_search" name="url_search" placeholder="请输入搜索结果要包含的 url,例如:cnki.net" autocomplete="off"
+					 class="layui-input">
 				</div>
 			</div>
+
 			<div class="layui-form-item">
-				<label class="layui-form-label">9、搜索引擎</label>
+				<label class="layui-form-label">9、时间限制</label>
+				<div class="layui-input-block">
+					<select name="time_limit_within_type" lay-filter="time_limit_within_type">
+						<option value=""></option>
+						<option value="within_day">一天内</option>
+						<option value="within_week">一周内</option>
+						<option value="within_month">一月内</option>
+						<option value="within_year">一年内</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">10.日期范围</label>
+					<div class="layui-inline" id="test6">
+						<div class="layui-input-inline">
+							<input type="text" autocomplete="off" id="input_startDate" class="layui-input" placeholder="开始日期">
+						</div>
+						<div class="layui-form-mid">-</div>
+						<div class="layui-input-inline">
+							<input type="text" autocomplete="off" id="input_endDate" class="layui-input" placeholder="结束日期">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">搜索引擎</label>
 				<div class="layui-input-block">
 					<select name="searchtype" lay-filter="searchtype">
 						<option value=""></option>
@@ -101,61 +162,56 @@
 			<div class="layui-form-item">
 				<div class="layui-input-block">
 					<button class="layui-btn" lay-submit lay-filter="formDemo">立即搜索</button>
-					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					<button type="reset" class="layui-btn layui-btn-danger">重置</button>
+					<button type="button" class="layui-btn layui-btn-normal" onclick="helpMe();">使用帮助</button>
 				</div>
 			</div>
-
-			<blockquote class="layui-elem-quote">
-				搜索技巧： </br>
-				①排除关键词(减号+关键词)
-				比如说：搜锤子而不是锤子手机，即为-手机
-				</br>
-				②精确搜索(给关键词加引号)
-				比如说：想搜小苹果，而不想是苹果，就“小苹果”
-				</br>
-				③指定网站内搜索(site：域名 关键词)
-				比如说在知乎里搜关于小苹果的内容，即为：site：zhihu.com 小苹果
-				这个方法用于一些搜索引擎特别垃圾的资料网站 比如说中国裁判文书网
-				</br>
-				④指定文件格式(filetype：文件格式 关键词)
-				比如说filetype：pdf 张文显《法理学》
-				包括doc，ppt，avi等格式
-				</br>
-				⑤指定标题搜索(intitle：关键词)
-				搜索的内容必须出现在标题里
-				比如说：intitle：小苹果 那搜索出来的网页标题就都包括小苹果 不然就会出现一些内容才会出现小苹果的网页 信息检索就很费劲
-				</br>
-				⑥intext:是指如果输入intext：小苹果,那搜索出来的文章里面就必须有小苹果的内容
-				</br>
-				⑦allintext: 是指搜索出来的内容必须有包括 小苹果 大苹果 红苹果 所有的内容
-
-				</br>
-				⑧结果包含某个url
-
-				</br>
-				注意事项：1.所有的冒号都是半角，也就是英文的冒号，而不是中文的冒号
-				2.空格很重要，关键词之间要有空格
-				3.提取关键词很重要(可以提高搜索效率）
-				4.在以上8种不同的方法之间加上“空格”，即可组合搜索，交集搜索。
-				
-			</br>
-				工具在线使用：
-				1、 <a href="https://bestming.gitee.io/search_tools" target="_blank" style="color: red;">bestming.gitee.io/search_tools</a>
-				2、 <a href="https://bestming.github.io/search_tools" target="_blank" style="color: red;">bestming.github.io/search_tools</a>
-				
-				</br>
-				项目源码： <a href="https://github.com/bestming/search_tools" target="_blank" style="color: red;">GitHub/search_tools</a>
-				</br>
-				code by <a href="https://github.com/bestming" target="_blank" style="color: red;">GitHub@韦相铭</a>,有问题，欢迎提交issues
-				</br>
-				灵感来源： <a href="https://www.bilibili.com/video/BV1YK4y1t7bg?t=437" target="_blank" style="color: red;">bilibili@蜡笔和小勋</a>
-			</blockquote>
 		</form>
 
 		<script>
+			//页面层
+			function helpMe() {
+				// alert("你点击了按钮哦");  
+				var index = layer.open({
+					type: 2,
+					 btn: ['明白了', '朕已阅'],
+					title: '保姆级教程',
+					skin: 'layui-layer-rim', //加上边框
+					// area: ['650px', '420px'], //宽高
+					// area: ['1000px', '600px'], //宽高
+					area: ['80%', '60%'], //宽高
+					shadeClose :true,
+					content: 'tips.html',
+					maxmin: true
+				});
+
+				// layer.full(index); //当前页面最大化，携带的参数是当前层的dom
+			}
+
+
+			// 用到的工具
+			// https://tool.lu/timestamp/
+			// https://www.bejson.com/enc/urlencode
+
+			// 当前时间 dayjs().format()
+			var today_YMD_0 = dayjs().format("YYYY-MM-DD");
+
+
 			//Demo
-			layui.use('form', function() {
-				var form = layui.form;
+			// layui.use(['form', 'laydate', 'layer'], function() {
+			layui.define(function() {
+				var form = layui.form,
+					laydate = layui.laydate,
+					layer = layui.layer;
+
+				laydate.render({
+					elem: '#test6',
+					min: '1970-1-1',
+					max: today_YMD_0,
+					range: ['#input_startDate', '#input_endDate']
+				});
+
+
 
 
 				// 搜索的文件类型
@@ -163,6 +219,7 @@
 
 				// 搜索引擎的下拉列表
 				var searchtype = "";
+				var time_limit_within_type = "";
 				//监听提交
 				form.on('submit(formDemo)', function(data) {
 					// layer.msg(JSON.stringify(data.field));
@@ -190,7 +247,7 @@
 						// search_text.concat(keyword);
 						search_text = search_text + "\"" + refine_search + "\"" + " ";
 					}
-					
+
 					// 排他搜索要放到精确搜索之后,否则搜索出的内容不符合预期
 					var exclusive_search = $("#exclusive_search").val();
 					// alert("exclusive_search:" + exclusive_search);
@@ -241,17 +298,205 @@
 						search_text = search_text + " url:" + url_search + " ";
 					}
 
+					// 百度的搜索的时间限制规则:年月日转为秒为单位的时间戳。开始时间和结束时间都是用时间戳
+
+					// 微软bing的搜索的时间限制规则:
+					// 格林时间1970-01-01为第0天
+					// 第18788天为2021-06-10。搜索0~18788天是1970-01-01到2021-06-10
+
+
+
+					var start_time_baidu = "";
+					var end_time_baidu = "";
+					var limit_time_scope = "";
+
+					var start_time_bing = "";
+					var end_time_bing = "";
+					var limit_time_scope_bing = "";
+
+
+					// 格林时间 1970-01-01开始时间。因为互联网都默认这个是开始时间
+					// 时间戳
+					// 毫秒（-28800000）
+					const GT_1970_01_01_millisecond = dayjs('1970-01-01');
+					// 秒为单位(保留两位小数点)
+					const GT_1970_01_01_second = GT_1970_01_01_millisecond / 1000;
+					// 秒为单位(只保留整数位)
+					const GT_1970_01_01_second_int = parseInt(GT_1970_01_01_second);
+
+					// 当前时间
+					const GT_nowDay_millisecond = dayjs();
+					const GT_nowDay_second = GT_nowDay_millisecond / 1000;
+					const GT_nowDay_second_int = parseInt(GT_nowDay_second);
+
+
+
+					// var input_startDate="2021-06-01";
+					// var input_endDate="2021-06-10";
+
+					var input_startDate = $("#input_startDate").val();
+					var input_endDate = $("#input_endDate").val();
+
+					// alert("input_startDate:"+input_startDate);
+					// alert("input_endDate:"+input_endDate);
+
+					// 当前时间 dayjs().format()
+					var today_YMD = dayjs().format("YYYY-MM-DD");
+					const default_startTime = dayjs('2000-01-01');
+
+					// laydate选中后，默认是强制填充日期的。判定再填充开始时间和结束时间，是怕哪个萌新把日期用删除键（Backspace、delete）删除了
+					if (is_empty(time_limit_within_type)) {
+						// 没开始时间，有结束时间
+						if ((is_empty(input_startDate)) && (!is_empty(input_endDate))) {
+							input_startDate = default_startTime;
+							// alert("input_startDate is null");
+						}
+						// 有开始时间，没结束时间
+						if ((!is_empty(input_startDate)) && (is_empty(input_endDate))) {
+							input_endDate = today_YMD;
+							// alert("input_endDate is null");
+						}
+					}
+
+
+
+					const input_startDate_millisecond = dayjs(input_startDate);
+					const input_startDate_second = input_startDate_millisecond / 1000;
+					const input_startDate_second_int = parseInt(input_startDate_second);
+
+					const input_endDate_millisecond = dayjs(input_endDate);
+					const input_endDate_second = input_endDate_millisecond / 1000;
+					const input_endDate_second_int = parseInt(input_endDate_second);
+
+
+
+
+
+
+					// 一天内(昨天这个时候的毫秒)
+					// 返回毫秒
+					var yesterday_millisecond = dayjs().subtract(1, 'day');
+					const yesterday_second = yesterday_millisecond / 1000;
+					const yesterday_second_int = parseInt(yesterday_second);
+
+					// alert("print:"+yesterday_second_int);
+
+					// 一周内（上周这个时候的毫秒）
+					var last_week_millisecond = dayjs().subtract(1, 'week');
+					const last_week_second = last_week_millisecond / 1000;
+					const last_week_second_int = parseInt(last_week_second);
+
+					// 一个月内（上个月这个时候的毫秒）
+					var last_month_millisecond = dayjs().subtract(1, 'month');
+					const last_month_second = last_month_millisecond / 1000;
+					const last_month_second_int = parseInt(last_month_second);
+
+					// 一年内（去年这个时候的毫秒）
+					var yester_year_millisecond = dayjs().subtract(1, 'year');
+					const yester_year_second = yester_year_millisecond / 1000;
+					const yester_year_second_int = parseInt(yester_year_second);
+
+					// 微软
+					const gt_to_nowDay = my_betweenDay(GT_1970_01_01_millisecond, GT_nowDay_millisecond);
+					const gt_to_yesterday = my_betweenDay(GT_1970_01_01_millisecond, yesterday_millisecond);
+					const gt_to_last_week = my_betweenDay(GT_1970_01_01_millisecond, last_week_millisecond);
+					const gt_to_last_month = my_betweenDay(GT_1970_01_01_millisecond, last_month_millisecond);
+					const gt_to_last_year = my_betweenDay(GT_1970_01_01_millisecond, yester_year_millisecond);
+
+					const gt_to_input_startDate = my_betweenDay(GT_1970_01_01_millisecond, input_startDate_millisecond);
+					const gt_to_input_endDate = my_betweenDay(GT_1970_01_01_millisecond, input_endDate_millisecond);
+
+
+
+
+					// 一天内
+					if (time_limit_within_type == "within_day") {
+
+
+						start_time_baidu = yesterday_second_int;
+						end_time_baidu = GT_nowDay_second_int;
+						limit_time_scope = "&gpc=stf=" + start_time_baidu + "," + end_time_baidu + "|stftype=2&tfflag=1";
+
+						// start_time_bing = gt_to_yesterday;
+						// end_time_bing = gt_to_nowDay;
+						// limit_time_scope_bing = "&filters=ex1%3a%22ez5_" + start_time_bing + "_" + end_time_bing +
+						// 	"%22&go=%e6%90%9c%e7%b4%a2&qs=ds";
+
+						limit_time_scope_bing = "&filters=ex1%3a%22ez1%22&go=%e6%90%9c%e7%b4%a2&qs=ds";
+
+					}
+					//一周内
+					if (time_limit_within_type == "within_week") {
+						start_time_baidu = last_week_second_int;
+						end_time_baidu = GT_nowDay_second_int;
+						limit_time_scope = "&gpc=stf=" + start_time_baidu + "," + end_time_baidu + "|stftype=2&tfflag=1";
+
+						// start_time_bing = gt_to_last_week;
+						// end_time_bing = gt_to_nowDay;
+						// limit_time_scope_bing = "&filters=ex1%3a%22ez5_" + start_time_bing + "_" + end_time_bing +
+						// 	"%22&go=%e6%90%9c%e7%b4%a2&qs=ds";
+						limit_time_scope_bing = "&filters=ex1%3a%22ez2%22&go=%e6%90%9c%e7%b4%a2&qs=ds";
+					}
+					// 一月内
+					if (time_limit_within_type == "within_month") {
+						start_time_baidu = last_month_second_int;
+						end_time_baidu = GT_nowDay_second_int;
+						limit_time_scope = "&gpc=stf=" + start_time_baidu + "," + end_time_baidu + "|stftype=2&tfflag=1";
+
+						// start_time_bing = gt_to_last_month;
+						// end_time_bing = gt_to_nowDay;
+						// limit_time_scope_bing = "&filters=ex1%3a%22ez5_" + start_time_bing + "_" + end_time_bing +
+						// 	"%22&go=%e6%90%9c%e7%b4%a2&qs=ds";
+
+						limit_time_scope_bing = "&filters=ex1%3a%22ez3%22&go=%e6%90%9c%e7%b4%a2&qs=ds";
+
+					}
+					// 一年内
+					if (time_limit_within_type == "within_year") {
+						start_time_baidu = yester_year_second_int;
+						end_time_baidu = GT_nowDay_second_int;
+						limit_time_scope = "&gpc=stf=" + start_time_baidu + "," + end_time_baidu + "|stftype=2&tfflag=1";
+
+						start_time_bing = gt_to_last_year;
+						end_time_bing = gt_to_nowDay;
+						limit_time_scope_bing = "&filters=ex1%3a%22ez5_" + start_time_bing + "_" + end_time_bing +
+							"%22&go=%e6%90%9c%e7%b4%a2&qs=ds";
+
+					}
+
+
+
+					// 手动输入时间
+					if ((!is_empty(input_startDate)) || (!is_empty(input_endDate))) {
+						limit_time_scope = "";
+						limit_time_scope_bing = "";
+
+						start_time_baidu = input_startDate_second_int;
+						end_time_baidu = input_endDate_second_int;
+
+						start_time_bing = gt_to_input_startDate;
+						end_time_bing = gt_to_input_endDate;
+
+						limit_time_scope = "&gpc=stf=" + start_time_baidu + "," + end_time_baidu + "|stftype=2&tfflag=1";
+						limit_time_scope_bing = "&filters=ex1%3a%22ez5_" + start_time_bing + "_" + end_time_bing +
+							"%22&go=%e6%90%9c%e7%b4%a2&qs=ds";
+					}
+
+
+
 					if (searchtype == "baidu") {
-						window.open("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&ch=&tn=baidu&bar=&wd=" + search_text);
+						window.open("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&ch=&tn=baidu&bar=&wd=" + search_text +
+							limit_time_scope);
 					} else if (searchtype == "bing") {
-						window.open("https://cn.bing.com/search?q=" + search_text);
+						window.open("https://cn.bing.com/search?q=" + search_text + limit_time_scope_bing);
 					} else if (searchtype == "google") {
 						window.open("https://www.google.com/search?q=" + search_text);
 					}
 
 					// 未选中,默认选择百度
 					if (is_empty(searchtype)) {
-						window.open("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&ch=&tn=baidu&bar=&wd=" + search_text);
+						window.open("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&ch=&tn=baidu&bar=&wd=" + search_text +
+							limit_time_scope);
 					}
 
 					// alert("search_text:   " + search_text);
@@ -275,6 +520,12 @@
 					searchtype = data.value;
 				});
 
+				// 把时间限制的下拉列表的值 赋值给全局参数
+				form.on('select(time_limit_within_type)', function(data) {
+					// alert("time_limit_within_type:" + data.value);
+					time_limit_within_type = data.value;
+				});
+
 
 			});
 
@@ -287,21 +538,13 @@
 				}
 				// alert("is_empty:");
 			}
+
+
+			// 返回 相差多少天，入参是毫秒
+			function my_betweenDay(start, end) {
+				return end.diff(start, 'day');
+			}
 		</script>
 	</body>
 
 </html>
-<!-- 
-
-{
-	"title": "d",
-	"exclusive_search": "a",
-	"refine_search": "on",
-	"site_search": "f",
-	"filetype": "0",
-	"text_search": "f",
-	"alltext_search": "d",
-	"url_search": "a"
-}
-
- -->
